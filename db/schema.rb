@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180719204646) do
+ActiveRecord::Schema.define(version: 20180720153303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20180719204646) do
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "discs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "album_id"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_discs_on_album_id"
+    t.index ["user_id"], name: "index_discs_on_user_id"
   end
 
   create_table "examples", force: :cascade do |t|
@@ -41,5 +51,7 @@ ActiveRecord::Schema.define(version: 20180719204646) do
     t.index ["token"], name: "index_users_on_token", unique: true
   end
 
+  add_foreign_key "discs", "albums"
+  add_foreign_key "discs", "users"
   add_foreign_key "examples", "users"
 end
