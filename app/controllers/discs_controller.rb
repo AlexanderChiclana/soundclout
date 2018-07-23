@@ -1,4 +1,4 @@
-class DiscsController < ApplicationController
+class DiscsController < ProtectedController
   before_action :set_disc, only: [:show, :update, :destroy]
 
   # GET /discs

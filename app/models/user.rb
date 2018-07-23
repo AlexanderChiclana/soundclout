@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   include Authentication
   has_many :examples
-  has_many :albums
   has_many :discs
+  has_many :albums, through: :discs
+
 end
