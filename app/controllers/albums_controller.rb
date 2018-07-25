@@ -1,7 +1,13 @@
 class AlbumsController < ApplicationController
+
+  #use open read controller instead of ApplicationController to give access to current user.
   before_action :set_album, only: [:show, :update, :destroy]
 
   # GET /albums
+  def collectors
+      @collectors = Album.users
+  end
+
   def index
     @albums = Album.all
 

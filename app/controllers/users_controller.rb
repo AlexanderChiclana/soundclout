@@ -4,6 +4,7 @@ class UsersController < ProtectedController
   before_action :set_user, only: %i[update show]
   skip_before_action :authenticate, only: %i[signup signin]
 
+
   # POST '/sign-up'
   def signup
     user = User.create(user_creds)
